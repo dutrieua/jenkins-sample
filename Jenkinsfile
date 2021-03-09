@@ -31,9 +31,9 @@ node () {
  			// Maven build step
 	withMaven(maven: 'maven') { 
  			if(isUnix()) {
- 				sh "mvn package" 
+ 				sh "mvn package -DskipTests" 
 			} else { 
- 				bat "mvn package" 
+ 				bat "mvn package -DskipTests" 
 			} 
  		} 
 	}
