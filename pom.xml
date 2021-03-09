@@ -31,4 +31,9 @@
    </plugins>
   </build>
   
+  <properties>
+    <sonar.projectKey>dutrieua_jenkins-sample</sonar.projectKey>
+    <sonar.organization>dutrieua</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  </properties>
 </project>
