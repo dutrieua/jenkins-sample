@@ -17,6 +17,16 @@ node () {
 			} 
  		} 
 	}
+	stage ('App-IC - Test') {
+ 			// Maven build step
+	withMaven(maven: 'maven') { 
+ 			if(isUnix()) {
+ 				sh "mvn test" 
+			} else { 
+ 				bat "mvn test" 
+			} 
+ 		} 
+	}
 	stage('Quality check') {
 		withSonarQubeEnv('Sonar') {
 			bat "mvn sonar:sonar"
