@@ -7,13 +7,13 @@ node () {
 	stage ('App-IC - Checkout') {
  	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github-login', url: 'https://github.com/dutrieua/jenkins-sample.git']]]) 
 	}
-	stage ('App-IC - Build') {
+	stage ('App-IC - Compile') {
  			// Maven build step
 	withMaven(maven: 'maven') { 
  			if(isUnix()) {
- 				sh "mvn clean package " 
+ 				sh "mvn clean compile " 
 			} else { 
- 				bat "mvn clean package " 
+ 				bat "mvn clean compile " 
 			} 
  		} 
 	}
@@ -24,6 +24,16 @@ node () {
  				sh "mvn test" 
 			} else { 
  				bat "mvn test" 
+			} 
+ 		} 
+	}
+	stage ('App-IC - Package') {
+ 			// Maven build step
+	withMaven(maven: 'maven') { 
+ 			if(isUnix()) {
+ 				sh "mvn package" 
+			} else { 
+ 				bat "mvn package" 
 			} 
  		} 
 	}
